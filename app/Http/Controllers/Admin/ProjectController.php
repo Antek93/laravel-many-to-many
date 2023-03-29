@@ -29,8 +29,9 @@ class ProjectController extends Controller
         $projects = Project::all();
         $categories = Category::all();
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin.projects.index', compact('projects', 'categories', 'types'));
+        return view('admin.projects.index', compact('projects', 'categories', 'types', 'technologies'));
     }
 
     /**
@@ -64,6 +65,10 @@ class ProjectController extends Controller
         }
 
         $newProject = Project::create($data);
+
+        foreach ($data['technologies'] as $techId) {
+            $newProject->technologies()->attach($techId);
+        }
 
         return redirect()->route('admin.projects.show', $newProject)->with('success', 'Progetto aggiunto con successo');
     }

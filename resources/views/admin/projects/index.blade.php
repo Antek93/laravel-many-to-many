@@ -42,6 +42,9 @@
                         <h6>
                             Tipo: {{ $project->type ? $project->type->name : 'Nessun tipo' }}
                         </h6>
+                        <h6>
+                            Tecnologia: {{ $project->technology ? $project->technology->nyame : 'Nessuna tecnologia' }}
+                        </h6>
                     </div>
                     <div class="d-flex justy-content-between">
                         <div>

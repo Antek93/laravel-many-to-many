@@ -41,6 +41,9 @@
                 <div class="my-4 px-3">
                     Tipo: {{ $project->type ? $project->type->name : 'nessun tipo' }}
                 </div>
+                <div class="my-4 px-3">
+                    Tecnologia: {{ $project->technology ? $project->technology->nyame : 'Nessuna tecnologia' }}
+                </div>
             </div>
         </div>
         <div class="row justify-content-center">
