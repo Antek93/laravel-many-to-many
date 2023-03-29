@@ -31,7 +31,7 @@
                     Descrizione del progetto:
                 </div>
                 <div class="mx-1 px-3 fw-bold">
-                    @for ($i = 0; $i <10; $i++)
+                    @for ($i = 0; $i < 10; $i++)
                         {{ $project->description }}
                     @endfor
                 </div>
@@ -42,7 +42,10 @@
                     Tipo: {{ $project->type ? $project->type->name : 'nessun tipo' }}
                 </div>
                 <div class="my-4 px-3">
-                    Tecnologia: {{ $project->technology ? $project->technology->name : 'Nessuna tecnologia' }}
+                    @foreach ($project->technologies as $technology)
+                        Tech: {{ $technology->name }}
+                    @endforeach
+                    {{-- Tecnologia: {{ $project->technology ? $project->technology : 'nessuna tecnologia' }} --}}
                 </div>
             </div>
         </div>
@@ -51,7 +54,7 @@
                 <div class="mx-1 px-3 fw-bold">
                     @if ($project->imagn)
                         <div>
-                            <img src="{{ asset('storage/'.$project->imagn) }}" alt="">
+                            <img src="{{ asset('storage/' . $project->imagn) }}" alt="">
                         </div>
                     @endif
                 </div>
