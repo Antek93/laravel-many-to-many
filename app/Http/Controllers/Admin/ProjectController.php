@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 
 //Models
 use App\Models\Category;
+use App\Models\Technology;
 use App\Models\Type;
 //Helpers
 use Illuminate\Support\Facades\Storage;
@@ -41,8 +42,9 @@ class ProjectController extends Controller
     {
         $categories = Category::all();
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin.projects.create', compact('categories', 'types'));
+        return view('admin.projects.create', compact('categories', 'types', 'technologies'));
     }
 
     /**
@@ -87,8 +89,9 @@ class ProjectController extends Controller
     {
         $categories = Category::all();
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin.projects.edit', compact('project','categories','types'));
+        return view('admin.projects.edit', compact('project','categories','types','technologies'));
     }
 
     /**

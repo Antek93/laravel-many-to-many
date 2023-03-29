@@ -52,7 +52,8 @@
                         <div class="py-3">
                             <label class="py-1" for="imagn">Immagine in evidenza</label>
                             <input name="imagn" type="file" class="form-control" id="imagn"
-                                placeholder="Inserisci immagine al progetto" accept="image/*">
+                                placeholder="Inserisci immagine al progetto"
+                                accept="image/*">
                         </div>
                         <div class="py-3">
                             <label for="category_id">
@@ -80,21 +81,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="py-3">
-                            <label class="form-label">
-                                Tipo
-                            </label>
-                            @foreach ($technologies as $technology)
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="technology {{ $technology->id }}"  value="{{ $technology->id }}">
-                                    <label class="form-check-label" for="technlogy {{ $technology->id }}">
-                                        {{ $technology->name }}
-                                    </label>
-                                </div>
-                            @endforeach
-                            </select>
-                        </div>
-
                         <div class="py-3">
                             <button class="btn btn-success">
                                 Crea progetto

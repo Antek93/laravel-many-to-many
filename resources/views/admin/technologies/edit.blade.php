@@ -29,25 +29,26 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="mx-1 px-3">
-                    <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.projects.update', $project->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="py-3">
                             <label class="py-1" for="name">Nome progetto</label>
                             <input name="name" type="text" class="form-control" id="name"
                                 placeholder="Inserisci il nome del progetto" required maxlength="30"
-                                value="{{ old('name') }}">
+                                value="{{ old('name', $project->name) }}">
                         </div>
                         <div class="py-3">
                             <label class="py-1" for="description">Descrizione del progetto</label>
                             <input name="description" type="text" class="form-control" id="description"
                                 placeholder="Inserisci descrizione del progetto" required maxlength="200"
-                                value="{{ old('description') }}">
+                                value="{{ old('description', $project->description) }}">
                         </div>
                         <div class="py-3">
                             <label class="py-1" for="link">Link al progetto</label>
                             <input name="link" type="text" class="form-control" id="link"
                                 placeholder="Inserisci link al progetto" required maxlength="500"
-                                value="{{ old('link') }}">
+                                value="{{ old('link', $project->link) }}">
                         </div>
                         <div class="py-3">
                             <label class="py-1" for="imagn">Immagine in evidenza</label>
@@ -63,7 +64,9 @@
                                     Nessuna categoria
                                 </option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}"> {{ $category->name }}</option>
+                                    <option value="{{ $category->id }}" {{ old('category_id', $project->category_id) == $category->id ? 'selected' : '' }}>
+                                         {{ $category->name }}
+                                        </option>
                                 @endforeach
                             </select>
                         </div>
@@ -76,31 +79,28 @@
                                     Nessuna tipo
                                 </option>
                                 @foreach ($types as $type)
-                                    <option value="{{ $type->id }}"> {{ $type->name }}</option>
+                                <option value="{{ $type->id }}" {{ old('type_id', $project->type_id) == $type->id ? 'selected' : '' }}>
+                                        {{ $type->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="py-3">
-                            <label class="form-label">
-                                Tipo
-                            </label>
-                            @foreach ($technologies as $technology)
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="technology {{ $technology->id }}"  value="{{ $technology->id }}">
-                                    <label class="form-check-label" for="technlogy {{ $technology->id }}">
-                                        {{ $technology->name }}
-                                    </label>
-                                </div>
-                            @endforeach
-                            </select>
-                        </div>
-
-                        <div class="py-3">
                             <button class="btn btn-success">
-                                Crea progetto
+                                Aggiorna
                             </button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 py-5">
+                <div class="mx-1 px-3 fw-bold">
+                    @if ($project->imagn)
+                        <div>
+                            <img src="{{ asset('storage/'.$project->imagn) }}" alt="">
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

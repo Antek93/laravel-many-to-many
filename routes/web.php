@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 // Controllers
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TechnologyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::resource('projects', ProjectController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('types', TypeController::class);
+    Route::resource('technologies', TechnologyController::class);
 
 });
 
