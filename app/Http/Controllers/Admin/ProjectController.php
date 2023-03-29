@@ -69,7 +69,7 @@ class ProjectController extends Controller
         if (array_key_exists('technologies', $data)) {
             foreach ($data['technologies'] as $techId) {
                 $newProject->technologies()->attach($techId);
-            }   
+            }
         }
 
         return redirect()->route('admin.projects.show', $newProject)->with('success', 'Progetto aggiunto con successo');
@@ -99,7 +99,7 @@ class ProjectController extends Controller
         $types = Type::all();
         $technologies = Technology::all();
 
-        return view('admin.projects.edit', compact('project','categories','types','technologies'));
+        return view('admin.projects.edit', compact('project', 'categories', 'types', 'technologies'));
     }
 
     /**
@@ -125,17 +125,23 @@ class ProjectController extends Controller
 
         $project->update($data);
 
-        // foreach ($project->technologies as $techId) {
-        //     $project->technologies()->detach($techId);
-        // }
-        // foreach ($data['technologies'] as $techId) {
-        //     $project->technologies()->attach($techId);
-        // }
 
-        //oppure
+        if (array_key_exists('projects', $data)) {
+            // foreach ($project->technologies as $techId) {
+            //     $project->technologies()->detach($techId);
+            // }
+            // foreach ($data['technologies'] as $techId) {
+            //     $project->technologies()->attach($techId);
+            // }
+
+            //oppure
+            $project->technologies()->sync($data['technologies']);
+        } else {
+            $project->technologies()->sync($data[]);
+        }
 
         $project->technologies()->sync($data['technologies']);
-        
+
         return redirect()->route('admin.projects.show', $project)->with('success', 'Progetto modificato con successo');
     }
 
