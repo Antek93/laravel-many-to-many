@@ -43,7 +43,19 @@
                             Tipo: {{ $project->type ? $project->type->name : 'Nessun tipo' }}
                         </h6>
                         <h6>
-                            Tecnologia: {{ $project->technology ? $project->technology->nyame : 'Nessuna tecnologia' }}
+                            @if (count($project->technologies) > 0)
+                                @foreach ($project->technologies as $technology)
+                                    <span class="pb-3 fw-bold">
+                                        @if (!empty($technology->name))
+                                            Tecnologia: {{ $technology->name }}
+                                        @else
+                                            Non ancora selezionata
+                                        @endif
+                                    </span>
+                                @endforeach
+                            @else
+                                Nessuna tecnologia selezionata
+                            @endif
                         </h6>
                     </div>
                     <div class="d-flex justy-content-between">
@@ -58,7 +70,8 @@
                             </a>
                         </div>
                         <div>
-                            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" onsubmit="return confirm('Sei sicuro di voler eliminare questo progetto?')">
+                            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST"
+                                onsubmit="return confirm('Sei sicuro di voler eliminare questo progetto?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">

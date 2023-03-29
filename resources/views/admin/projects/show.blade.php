@@ -42,10 +42,19 @@
                     Tipo: {{ $project->type ? $project->type->name : 'nessun tipo' }}
                 </div>
                 <div class="my-4 px-3">
-                    @foreach ($project->technologies as $technology)
-                        Tech: {{ $technology->name }}
-                    @endforeach
-                    {{-- Tecnologia: {{ $project->technology ? $project->technology : 'nessuna tecnologia' }} --}}
+                    @if (count($project->technologies) > 0)
+                        @foreach ($project->technologies as $technology)
+                            <span class="pb-3 fw-bold">
+                                @if (!empty($technology->name))
+                                   Tecnologia: {{ $technology->name }}
+                                @else
+                                    Non ancora selezionata
+                                @endif
+                            </span>
+                        @endforeach
+                    @else
+                        Non ci sono tecnologie disponibili.
+                    @endif
                 </div>
             </div>
         </div>
