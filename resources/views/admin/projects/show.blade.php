@@ -42,7 +42,7 @@
                     Tipo: {{ $project->type ? $project->type->name : 'nessun tipo' }}
                 </div>
                 <div class="my-4 px-3">
-                    Tecnologia: {{ $project->technology ? $project->technology->nyame : 'Nessuna tecnologia' }}
+                    Tecnologia: {{ $project->technology ? $project->technology->name : 'Nessuna tecnologia' }}
                 </div>
             </div>
         </div>
