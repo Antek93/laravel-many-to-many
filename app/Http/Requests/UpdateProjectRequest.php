@@ -30,6 +30,7 @@ class UpdateProjectRequest extends FormRequest
             'imagn' => 'nullable|max:4080|image',
             'category_id' => 'nullable|exists:categories,id',
             'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'nullable|array|exists:technologies,id'
 
 
         ];

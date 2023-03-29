@@ -82,7 +82,7 @@
                         </div>
                         <div class="py-3">
                             <label class="form-label">
-                                Tipo
+                                Tecnologia
                             </label>
                             @foreach ($technologies as $technology)
                                 <div class="form-check form-check-inline">
@@ -92,7 +92,6 @@
                                     </label>
                                 </div>
                             @endforeach
-                            </select>
                         </div>
 
                         <div class="py-3">

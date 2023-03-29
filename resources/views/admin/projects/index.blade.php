@@ -43,11 +43,12 @@
                             Tipo: {{ $project->type ? $project->type->name : 'Nessun tipo' }}
                         </h6>
                         <h6>
+                            Tecnologia: 
                             @if (count($project->technologies) > 0)
                                 @foreach ($project->technologies as $technology)
                                     <span class="pb-3 fw-bold">
                                         @if (!empty($technology->name))
-                                            Tecnologia: {{ $technology->name }}
+                                        {{ $technology->name }}
                                         @else
                                             Non ancora selezionata
                                         @endif

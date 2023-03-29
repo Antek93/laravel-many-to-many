@@ -29,7 +29,8 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="mx-1 px-3">
-                    <form action="{{ route('admin.projects.update', $project->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.projects.update', $project->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="py-3">
@@ -64,9 +65,10 @@
                                     Nessuna categoria
                                 </option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}" {{ old('category_id', $project->category_id) == $category->id ? 'selected' : '' }}>
-                                         {{ $category->name }}
-                                        </option>
+                                    <option value="{{ $category->id }}"
+                                        {{ old('category_id', $project->category_id) == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -79,10 +81,37 @@
                                     Nessuna tipo
                                 </option>
                                 @foreach ($types as $type)
-                                <option value="{{ $type->id }}" {{ old('type_id', $project->type_id) == $type->id ? 'selected' : '' }}>
+                                    <option value="{{ $type->id }}"
+                                        {{ old('type_id', $project->type_id) == $type->id ? 'selected' : '' }}>
                                         {{ $type->name }}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="py-3">
+                            <label class="form-label">
+                                Tecnologia
+                            </label>
+                            @foreach ($technologies as $technology)
+                                <div class="form-check form-check-inline">
+                                    {{-- ///////// --}}
+                                    <input name="technologies[]" class="form-check-input" type="checkbox"
+                                        id="{{ $technology->id }}" value="{{ $technology->id }}"
+
+                                        {{-- ///////// --}}
+                                        @if (old('technologies') && is_array(old('technologies')) && count(old('technologies')) > 0)
+                                        
+                                        {{ in_array($project->id), old('technologies') ? 'checked' : '' }}
+                                        
+                                        @elseif($project->technologies->contains($technology->id))
+                                        checked
+                                        @endif
+                                        {{-- ///////// --}} value="{{ $technology->id }}">
+
+                                    <label class="form-check-label" for="technology {{ $technology->id }}">
+                                        {{ $technology->name }}
+                                    </label>
+                                </div>
+                            @endforeach
                         </div>
                         <div class="py-3">
                             <button class="btn btn-success">
@@ -98,7 +127,7 @@
                 <div class="mx-1 px-3 fw-bold">
                     @if ($project->imagn)
                         <div>
-                            <img src="{{ asset('storage/'.$project->imagn) }}" alt="">
+                            <img src="{{ asset('storage/' . $project->imagn) }}" alt="">
                         </div>
                     @endif
                 </div>
