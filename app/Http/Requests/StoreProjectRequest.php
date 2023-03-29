@@ -29,7 +29,8 @@ class StoreProjectRequest extends FormRequest
             'link' => 'required|max:500',
             'imagn' => 'nullable|max:4080|image',
             'category_id' => 'nullable|exists:categories,id',
-            'type_id' => 'nullable|exists:types,id'
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'nullable|array|exists:technologies,id'
         ];
     }
 }
